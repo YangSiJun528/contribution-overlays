@@ -1,0 +1,6 @@
+project = "spring-io-initializr"
+description = "Agent instructions for contributing to spring-io/initializr."
+
+files = [
+  "AGENTS.md",
+]
