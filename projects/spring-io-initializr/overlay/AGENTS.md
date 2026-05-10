@@ -1,26 +1,35 @@
 # AGENTS.md
 
-These instructions apply to the whole Spring Initializr repository.
+These instructions apply to this Spring Initializr checkout.
 
-## Project Context
+## Local Overlay
 
-- The contribution target is `spring-io/initializr`.
-- Local checkouts may use a personal fork as `origin`; use `upstream` as the project reference when reasoning about this overlay.
-- This is a multi-module Maven project for Spring Initializr.
-- Use the Maven wrapper from the repository root.
-- The README currently states that building from source needs Java 25 and a bash-like shell.
+- Target upstream is `spring-io/initializr`; personal forks may be `origin`, so treat `upstream` as the project reference.
+- `AGENTS.md` and `.codex/` are local assistant overlay artifacts. Keep them in English and outside the target repository's Git tracking.
 
-## Common Commands
+## Environment
 
-- Full build: `./mvnw clean install`
-- Full build with docs: `./mvnw clean install -Pfull`
-- Validate formatting/checkstyle: `./mvnw validate`
-- Apply Spring JavaFormat: `./mvnw io.spring.javaformat:spring-javaformat-maven-plugin:apply`
+- Use SDKMAN for Java/toolchain setup.
+- Run Maven through the repository wrapper, `./mvnw`.
 
-## Contribution Notes
+## Maven
 
-- Do not commit this `AGENTS.md`; it is managed by `contribution-overlays`.
-- Keep target repository commits focused on upstream contribution changes.
-- Commit messages for upstream work need a `Signed-off-by` trailer.
-- New Java files should follow existing license header, Javadoc, and `@author` conventions.
+- Clean build/test: `./mvnw clean install`
+- Format Java source: `./mvnw io.spring.javaformat:spring-javaformat-maven-plugin:apply`
+- Formatting/checkstyle gate: `./mvnw validate`
+- Verify: `./mvnw verify`
+- Full docs/artifacts build, including Asciidoctor and JavaDoc: `./mvnw clean install -Pfull`
+
+## Contribution Workflow
+
+- Keep upstream commits focused and include a `Signed-off-by` trailer.
+- During development, run focused tests/checks for the area being changed.
+- Work and commit in meaningful testable change units, which may be internal behavior changes rather than end-to-end features.
+- Before committing, run a clean verification pass with `./mvnw clean verify` so tests, formatting, and checkstyle pass.
 - Prefer rebasing feature branches on upstream `main` before opening or updating a PR.
+
+## Contribution Code Rules
+
+- TDD is optional, but logic changes need commit-time test verification through existing, updated, removed, or new tests.
+- Add `@author` only for new classes or substantial functional changes where ownership context is useful.
+- Skip it for formatting, small fixes, tests-only changes, and minor helper or developer-convenience additions.
