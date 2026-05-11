@@ -3,4 +3,5 @@ description = "Agent instructions for contributing to spring-io/initializr."
 
 files = [
   "AGENTS.md",
+  "PROJECT_GENERATION_MANUAL_VERIFICATION.md",
 ]

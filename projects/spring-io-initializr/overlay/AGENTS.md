@@ -26,6 +26,9 @@ These instructions apply to this Spring Initializr checkout.
 - During development, run focused tests/checks for the area being changed.
 - Work and commit in meaningful testable change units, which may be internal behavior changes rather than end-to-end features.
 - Before committing, run a clean verification pass with `./mvnw clean verify` so tests, formatting, and checkstyle pass.
+- After implementation and regular verification, use
+  `PROJECT_GENERATION_MANUAL_VERIFICATION.md` only for final manual checks of
+  generated output.
 - Prefer rebasing feature branches on upstream `main` before opening or updating a PR.
 
 ## Contribution Code Rules
