@@ -12,6 +12,11 @@ These instructions apply to this Spring Initializr checkout.
 - Use SDKMAN for Java/toolchain setup.
 - Run Maven through the repository wrapper, `./mvnw`.
 
+## GitHub CLI
+
+- Project-scoped Codex rules forbid direct `gh pr` and `gh issue` write operations, including create, edit, close, reopen, comment, review, and merge actions.
+- Do not bypass this with reordered `gh` arguments, `gh api`, browser automation, or another GitHub write channel. Read-only `gh` inspection commands are fine.
+
 ## Maven
 
 - Clean build/test: `./mvnw clean install`

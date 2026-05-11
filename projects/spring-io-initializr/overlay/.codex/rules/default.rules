@@ -1,0 +1,71 @@
+# Block direct GitHub issue and pull request mutations from Codex in this repo.
+
+prefix_rule(
+    pattern = [
+        "gh",
+        "pr",
+        [
+            "close",
+            "comment",
+            "create",
+            "edit",
+            "lock",
+            "merge",
+            "pin",
+            "ready",
+            "reopen",
+            "review",
+            "unlock",
+            "unpin",
+            "update-branch",
+        ],
+    ],
+    decision = "forbidden",
+    justification = "Do not create or mutate Spring Initializr pull requests from Codex. Use read-only gh inspection commands only.",
+    match = [
+        "gh pr create --title test",
+        "gh pr edit 123 --title test",
+        "gh pr comment 123 --body test",
+        "gh pr merge 123",
+        "gh pr review 123 --approve",
+    ],
+    not_match = [
+        "gh pr list",
+        "gh pr view 123 --json title",
+        "gh repo view spring-io/initializr",
+    ],
+)
+
+prefix_rule(
+    pattern = [
+        "gh",
+        "issue",
+        [
+            "close",
+            "comment",
+            "create",
+            "delete",
+            "develop",
+            "edit",
+            "lock",
+            "pin",
+            "reopen",
+            "transfer",
+            "unlock",
+            "unpin",
+        ],
+    ],
+    decision = "forbidden",
+    justification = "Do not create or mutate Spring Initializr issues from Codex. Use read-only gh inspection commands only.",
+    match = [
+        "gh issue create --title test",
+        "gh issue edit 123 --title test",
+        "gh issue comment 123 --body test",
+        "gh issue close 123",
+    ],
+    not_match = [
+        "gh issue list",
+        "gh issue view 123 --json title",
+        "gh repo view spring-io/initializr",
+    ],
+)
